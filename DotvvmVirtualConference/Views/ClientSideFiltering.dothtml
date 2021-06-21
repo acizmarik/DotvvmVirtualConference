@@ -1,0 +1,49 @@
+﻿@viewModel DotvvmVirtualConference.ViewModels.ClientSideFilteringViewModel, DotvvmVirtualConference
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <h1>Client-side collections filtering demo</h1>
+
+    <div>
+        <h2>Source collection</h2>
+        <dot:GridView DataSource="{value: Customers}">
+            <dot:GridViewTextColumn HeaderText="Id" ValueBinding="{value: Id}" />
+            <dot:GridViewTextColumn HeaderText="Name" ValueBinding="{value: Name}" />
+            <dot:GridViewTextColumn HeaderText="Category" ValueBinding="{value: Category}" />
+            <dot:GridViewTextColumn HeaderText="IsActive" ValueBinding="{value: IsActive}" />
+            <dot:GridViewTextColumn HeaderText="RegisteredAt" ValueBinding="{value: RegisteredAt}" />
+        </dot:GridView>
+    </div>
+
+    <div>
+        <h2>Operations</h2>
+        <div>
+            <dot:Button Text="OrderBy(Id)" Click="{staticCommand: FilteredCustomers = Customers.OrderBy(c => c.Id).ToList()}" />
+            <dot:Button Text="OrderBy(Name)" Click="{staticCommand: FilteredCustomers = Customers.OrderBy(c => c.Name).ToList()}" />
+            <dot:Button Text="OrderBy(Category)" Click="{staticCommand: FilteredCustomers = Customers.OrderBy(c => c.Category).ToList()}" />
+            <dot:Button Text="OrderBy(IsActive)" Click="{staticCommand: FilteredCustomers = Customers.OrderBy(c => c.IsActive).ToList()}" />
+            <dot:Button Text="OrderBy(RegisteredAt)" Click="{staticCommand: FilteredCustomers = Customers.OrderBy(c => c.RegisteredAt).ToList()}" />
+        </div>
+        <div>
+            <dot:Button Text="Take(5)" Click="{staticCommand: FilteredCustomers = Customers.Take(5).ToList()}" />
+            <dot:Button Text="Skip(5)" Click="{staticCommand: FilteredCustomers = Customers.Skip(5).ToList()}" />
+            <dot:Button Text="Where(IsActive)" Click="{staticCommand: FilteredCustomers = Customers.Where(c => c.IsActive).ToList()}" />
+            <dot:Button Text="Where(!IsActive)" Click="{staticCommand: FilteredCustomers = Customers.Where(c => !c.IsActive).ToList()}" />
+        </div>
+        
+    </div>
+
+    <div>
+        <h2>Filtered collection</h2>
+        <dot:GridView DataSource="{value: FilteredCustomers}">
+            <dot:GridViewTextColumn HeaderText="Id" ValueBinding="{value: Id}" />
+            <dot:GridViewTextColumn HeaderText="Name" ValueBinding="{value: Name}" />
+            <dot:GridViewTextColumn HeaderText="Category" ValueBinding="{value: Category}" />
+            <dot:GridViewTextColumn HeaderText="IsActive" ValueBinding="{value: IsActive}" />
+            <dot:GridViewTextColumn HeaderText="RegisteredAt" ValueBinding="{value: RegisteredAt}" />
+        </dot:GridView>
+    </div>
+
+</dot:Content>
+

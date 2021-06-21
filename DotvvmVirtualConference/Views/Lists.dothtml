@@ -1,0 +1,28 @@
+﻿@viewModel DotvvmVirtualConference.ViewModels.ListsViewModel, DotvvmVirtualConference
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <h1>Client-side list demo</h1>
+
+    <div>
+        <h2>Operations</h2>
+        <dot:Button Text="Add" Click="{staticCommand: List.Add(List.Count + 1)}" />
+        <dot:Button Text="Clear" Click="{staticCommand: List.Clear()}" />
+        <dot:Button Text="Insert (1,22)" Click="{staticCommand: List.Insert(1, 22)}" />
+        <dot:Button Text="RemoveAt (2)" Click="{staticCommand: List.RemoveAt(2)}" />
+        <dot:Button Text="RemoveAll (even)" Click="{staticCommand: List.RemoveAll((int index) => index % 2 == 0)}" />
+        <dot:Button Text="RemoveFirst (even)" Click="{staticCommand: List.RemoveFirst((int index) => index % 2 == 0)}" />
+        <dot:Button Text="RemoveLast (even)" Click="{staticCommand: List.RemoveLast((int index) => index % 2 == 0)}" />
+        <dot:Button Text="Reverse" Click="{staticCommand: List.Reverse()}" />
+    </div>
+
+    <div>
+        <h2>List</h2>
+        <dot:GridView DataSource="{value: List}">
+            <dot:GridViewTextColumn HeaderText="Value" ValueBinding="{value: $"   {_this}"}" />
+        </dot:GridView>
+    </div>
+
+</dot:Content>
+
